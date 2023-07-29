@@ -1,6 +1,8 @@
 package hello.core.scan;
 import hello.core.AutoAppConfig;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
+import hello.core.order.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -13,5 +15,8 @@ public class AutoAppConfigTest {
         assertThat(memberService).isInstanceOf(MemberService.class);
         // ClassPathBeanDefinitionScanner -- Identified candidate component class: file [C:\Users\kjw42\Desktop\study\core\out\production\classes\hello\core\discount\RateDiscountPolicy.class]
 
+        OrderServiceImpl bean = ac.getBean(OrderServiceImpl.class);
+        MemberRepository memberRepository = bean.getMemberRepository();
+        System.out.println("memberRepository = " + memberRepository);
     }
 }
